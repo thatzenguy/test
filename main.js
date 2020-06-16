@@ -4,6 +4,15 @@ var gameData = {
     pointsPerClickCost: 15
   }
 
+var saveGameLoop = window.setInterval(function() {
+    localStorage.setItem("pointSave", JSON.stringify(gameData))
+    }, 15000)
+
+var savegame = JSON.parse(localStorage.getItem("pointSave"))
+    if (savegame !== null) {
+      gameData = savegame
+    }
+    
 function addPoints() {
     gameData.points += gameData.pointsPerClick
     document.getElementById("pointsGotten").innerHTML = gameData.points + " Points"
